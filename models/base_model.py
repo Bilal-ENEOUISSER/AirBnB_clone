@@ -3,7 +3,7 @@
 """Defines a base model class."""
 import uuid
 from datetime import datetime
-
+import models
 
 class BaseModel:
     """
@@ -21,16 +21,19 @@ class BaseModel:
                 else:
                     setattr(self, key, value)
         else:
-        self.id = str(uuid.uuid4())
+            self.id = str(uuid.uuid4())
         
-        self.created_at = datetime.utcnow()
-        self.updated_at = datetime.utcnow()
+            self.created_at = datetime.utcnow()
+            self.updated_at = datetime.utcnow()
+            
+        models.storage.new(self)
 
     def save(self):
         """Updates the public instance attribute updated_at
             with the current datetime."""
 
         self.update_at = datetime.utcnow()
+        models.storage.save()
 
     def to_dict(self):
         """Returns a dictionary containing all keys/values of __dict__"""
