@@ -1,9 +1,9 @@
 #!/usr/bin/python
 """
-Module for the user class.
+Module for the User class.
 """
 from models.base_model import BaseModel
-class user(BaseModel):
+class User(BaseModel):
     """"
     class user that inherits from BaseModel.
     """
